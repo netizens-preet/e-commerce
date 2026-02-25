@@ -56,7 +56,7 @@ class User extends Authenticatable
     const customer = 'customer';
 
    
-    // Helper methods for easy checking
+    
     public function isAdmin() {
         return $this->role === self::admin;
     }
