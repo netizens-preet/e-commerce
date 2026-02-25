@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -45,4 +46,19 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    const admin = 'admin';
+    const seller = 'editor';
+    const customer = 'customer';
+
+   
+    
+    public function isAdmin() {
+        return $this->role === self::admin;
+    }
 }
+
