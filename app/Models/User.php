@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -49,4 +50,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+
+    const admin = 'admin';
+    const seller = 'editor';
+    const customer = 'customer';
+
+   
+    // Helper methods for easy checking
+    public function isAdmin() {
+        return $this->role === self::admin;
+    }
 }
+
