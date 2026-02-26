@@ -6,8 +6,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -52,13 +53,22 @@ class User extends Authenticatable
     }
 
     const admin = 'admin';
-    const seller = 'editor';
+    const seller = 'seller';
     const customer = 'customer';
 
-   
-    
-    public function isAdmin() {
+
+
+    public function isAdmin()
+    {
         return $this->role === self::admin;
+    }
+    public function isSeller()
+    {
+        return $this->role === self::seller;
+    }
+    public function isCustomer()
+    {
+        return $this->role === self::customer;
     }
 }
 
